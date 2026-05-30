@@ -3,6 +3,7 @@ import random
 
 from faker import Faker
 from url import LOGIN_URL
+from data import Credentials
 from locators import LoginPageLocators, MainPageLocators
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
@@ -30,11 +31,6 @@ def generate_incorrect_password():
     return password[::length]
 
 @pytest.fixture
-def auth():
-    return {'login': 'dariamomatyuk46_123@ya.ru', 
-            'password': 'sj76wgbkhk&^1'}
-
-@pytest.fixture
 def driver():
     driver = webdriver.Chrome()
 
@@ -46,12 +42,9 @@ def logged_in_driver():
     driver = webdriver.Chrome()
     driver.get(LOGIN_URL)
 
-    login = "dariamomatyuk46_123@ya.ru"
-    password = "sj76wgbkhk&^1"
-
     #Авторизация
-    driver.find_element(*LoginPageLocators.EMAIL_FIELD_LOG).send_keys(login) #Поле Email
-    driver.find_element(*LoginPageLocators.PASSWORD_FIELD_LOG).send_keys(password) #Поле Пароль
+    driver.find_element(*LoginPageLocators.EMAIL_FIELD_LOG).send_keys(Credentials.email) #Поле Email
+    driver.find_element(*LoginPageLocators.PASSWORD_FIELD_LOG).send_keys(Credentials.password) #Поле Пароль
     driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click() #Кнопка "Войти"
 
     WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located(MainPageLocators.ORDER_BUTTON))
