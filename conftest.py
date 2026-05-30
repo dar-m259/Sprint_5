@@ -2,7 +2,7 @@ import pytest
 import random
 
 from faker import Faker
-from url import LOGIN_URL
+from url import LOGIN_URL, REGISTER_URL, MAIN_URL, FORGOT_PASS_URL
 from data import Credentials
 from locators import LoginPageLocators, MainPageLocators
 from selenium import webdriver
@@ -51,3 +51,18 @@ def logged_in_driver():
 
     yield driver
     driver.quit()
+    
+@pytest.fixture
+def register_page(driver):
+    driver.get(REGISTER_URL)
+    return driver
+
+@pytest.fixture
+def main_page(driver):
+    driver.get(MAIN_URL)
+    return driver
+
+@pytest.fixture
+def forgot_pass_page(driver):
+    driver.get(FORGOT_PASS_URL)
+    return driver

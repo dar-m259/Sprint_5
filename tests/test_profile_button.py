@@ -1,4 +1,3 @@
-from url import MAIN_URL
 from locators import LoginPageLocators, MainPageLocators, ProfilePageLocators
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -12,8 +11,8 @@ def test_profile_button_click_authorized_shows_profilepage(logged_in_driver):
 
     assert shows_profilepage
 
-def test_profile_button_click_unauthorized_shows_loginpage(driver):
-    driver.get(MAIN_URL)
+def test_profile_button_click_unauthorized_shows_loginpage(main_page):
+    driver = main_page
 
     #Кликнуть на "Личный кабинет"
     driver.find_element(*MainPageLocators.PROFILE_LINK).click() #Гиперссылка "Личный кабинет"

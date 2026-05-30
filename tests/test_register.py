@@ -1,10 +1,9 @@
-from url import REGISTER_URL
 from locators import RegisterPageLocators, LoginPageLocators
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
-def test_register_password_6_or_more_success(driver, generate_email, generate_password):
-    driver.get(REGISTER_URL)
+def test_register_password_6_or_more_success(register_page, generate_email, generate_password):
+    driver = register_page
 
     #Регистрация
     driver.find_element(*RegisterPageLocators.NAME_FIELD_REG).send_keys("Имя") #Поле "Имя"
@@ -16,8 +15,8 @@ def test_register_password_6_or_more_success(driver, generate_email, generate_pa
 
     assert signup_success
 
-def test_register_password_less_than_6_shows_error(driver, generate_email, generate_incorrect_password):
-    driver.get(REGISTER_URL)
+def test_register_password_less_than_6_shows_error(register_page, generate_email, generate_incorrect_password):
+    driver = register_page
 
     #Регистрация
     driver.find_element(*RegisterPageLocators.NAME_FIELD_REG).send_keys("Имя") #Поле "Имя"

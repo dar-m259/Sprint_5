@@ -1,12 +1,10 @@
-from url import MAIN_URL, REGISTER_URL, FORGOT_PASS_URL
 from data import Credentials
 from locators import LoginPageLocators, MainPageLocators, RegisterPageLocators, ForgotPasswordPageLocators
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
-def test_login_log_via_auth_button_success(driver):
-    driver.get(MAIN_URL)
+def test_login_log_via_auth_button_success(main_page):
+    driver = main_page
 
     #Авторизация
     driver.find_element(*MainPageLocators.AUTH_BUTTON).click() #Кнопка "Войти в аккаунт"
@@ -18,8 +16,8 @@ def test_login_log_via_auth_button_success(driver):
 
     assert order_button_is_visible
 
-def test_login_log_via_profile_button_success(driver):
-    driver.get(MAIN_URL)
+def test_login_log_via_profile_button_success(main_page):
+    driver = main_page
 
     #Авторизация
     driver.find_element(*MainPageLocators.PROFILE_LINK).click() #Гиперссылка "Личный кабинет"
@@ -31,8 +29,8 @@ def test_login_log_via_profile_button_success(driver):
 
     assert order_button_is_visible
 
-def test_login_log_from_register_page_success(driver):
-    driver.get(REGISTER_URL)
+def test_login_log_from_register_page_success(register_page):
+    driver = register_page
 
     #Авторизация
     driver.find_element(*RegisterPageLocators.LOGIN_LINK).click() #Гиперссылка "Войти"
@@ -44,8 +42,8 @@ def test_login_log_from_register_page_success(driver):
 
     assert order_button_is_visible
 
-def test_login_log_from_passwordrecovery_page_succes(driver):
-    driver.get(FORGOT_PASS_URL)
+def test_login_log_from_passwordrecovery_page_succes(forgot_pass_page):
+    driver = forgot_pass_page
 
     #Авторизация
     driver.find_element(*ForgotPasswordPageLocators.LOGIN_LINK_FP).click() #Гиперссылка "Войти"
